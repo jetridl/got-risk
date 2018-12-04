@@ -1,0 +1,148 @@
+[
+    {
+        "id": "skagos", 
+        "name": "Skagos",
+        "castle": false,
+        "port": "",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+            "the_gift", "karhold"
+        ]
+    },
+    {
+        "id": "the_gift", 
+        "name": "The Gift",
+        "castle": false,
+        "port": "",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+            "skagos", "karhold", "the_dreadfort", "winterfell"
+        ]
+    },
+    {
+        "id": "karhold", 
+        "name": "Karhold",
+        "castle": false,
+        "port": "",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+            "skagos", "the_gift", "the_dreadfort"
+        ]
+    },
+    {
+        "id": "the_dreadfort", 
+        "name": "The Dreadfort",
+        "castle": true,
+        "port": "",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+            "karhold", "the_gift", "widows_watch", "winterfell"
+        ]
+    },
+    {
+        "id": "winterfell", 
+        "name": "Winterfell",
+        "castle": true,
+        "port": "",
+        "territory": "the_north",
+        "seatOfPower": true,
+        "neighbours": [
+            "the_gift", "the_dreadfort", "widows_watch", "white_harbour", "barrowlands", "wolfswood", "bear_island"
+        ]
+    },
+    {
+        "id": "widows_watch", 
+        "name": "Widow's Watch",
+        "castle": false,
+        "port": "blue",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+             "the_dreadfort",  "white_harbour", "winterfell"
+        ]
+    },
+    {
+        "id": "white_harbour", 
+        "name": "White Harbour",
+        "castle": false,
+        "port": "blue",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+             "barrowlands", "widows_watch" , "winterfell", "the_neck"
+        ]
+    },
+    {
+        "id": "barrowlands", 
+        "name": "Barrowlands",
+        "castle": true,
+        "port": "",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+             "winterfell", "white_harbour",  "wolfswood", "stoney_shore", "the_neck"
+        ]
+    },
+    {
+        "id": "wolfswood", 
+        "name": "Wolfswood",
+        "castle": false,
+        "port": "silver",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+             "winterfell", "stoney_shore", "bear_island", "barrowlands"
+        ]
+    },
+    {
+        "id": "bear_island", 
+        "name": "Bear Island",
+        "castle": false,
+        "port": "",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+             "winterfell", "wolfswood", "stoney_shore"
+        ]
+    },
+    {
+        "id": "stoney_shore", 
+        "name": "Stoney Shore",
+        "castle": false,
+        "port": "",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+             "barrowlands", "wolfswood", "bear_island"
+        ]
+    },
+    {
+        "id": "the_neck", 
+        "name": "The Neck",
+        "castle": false,
+        "port": "",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+             "cape_kraken", "barrowlands", "white_harbour"
+        ]
+    },
+    {
+        "id": "cape_kraken", 
+        "name": "Cape Kraken",
+        "castle": false,
+        "port": "silver",
+        "territory": "the_north",
+        "seatOfPower": false,
+        "neighbours": [
+             "the_neck"
+        ]
+    }
+    
+    
+
+]
