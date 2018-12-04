@@ -14,8 +14,26 @@
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
   <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
-
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw.css" />
+  <script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw.js"></script>
   <style>
+   #delete, #export {
+            position: absolute;
+            top:50px;
+            right:10px;
+            z-index:100;
+            background:white;
+            color:black;
+            padding:6px;
+            border-radius:4px;
+            font-family: 'Helvetica Neue';
+            cursor: pointer;
+            font-size:12px;
+            text-decoration:none;
+        }
+        #export {
+            top:90px;
+        }
 </style>
 
 
@@ -33,8 +51,7 @@
   <script>
     var map = L.map('map', {
         crs: L.CRS.Simple,
-        zoomControl: false,
-        drawControl: true
+        zoomControl: false
         });
 
      //var bounds = [[0,0], [1488,1000]];
@@ -44,12 +61,74 @@
 
     var drawnItems = new L.FeatureGroup();
     map.addLayer(drawnItems);
-    var drawControl = new L.Control.Draw({
-        edit: {
-            featureGroup: drawnItems
-        }
-    });
+    drawOptions = {
+      draw: {
+        polygon: {
+          shapeOptions: {
+            color: 'purple'
+          },
+          icon: new L.DivIcon({
+          iconSize: new L.Point(4, 4),
+          className: 'leaflet-div-icon leaflet-editing-icon'
+          }),
+        },
+        polyline: {
+          shapeOptions: {
+            color: 'red'
+          },
+          icon: new L.DivIcon({
+          iconSize: new L.Point(8, 8),
+          className: 'leaflet-div-icon leaflet-editing-icon'
+        }),
+        //touchIcon: new L.DivIcon({
+        //  iconSize: new L.Point(20, 20),
+        //  className: 'leaflet-div-icon leaflet-editing-icon leaflet-touch-icon'
+        //}),
+          showLength: false
+        },
+        rect: {
+        shapeOptions: {
+          color: 'green'
+        },
+        },
+        circle: {
+        shapeOptions: {
+          color: 'steelblue'
+        },
+        },
+      },
+      edit: {
+        featureGroup: drawnItems
+      }
+      }
+    var drawControl = new L.Control.Draw(drawOptions);
     map.addControl(drawControl);
+
+
+    map.on(L.Draw.Event.CREATED, function (event) {
+        var layer = event.layer;
+
+        drawnItems.addLayer(layer);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     var sol = L.latLng([ 744, 500 ]);
     L.marker(sol).addTo(map);
