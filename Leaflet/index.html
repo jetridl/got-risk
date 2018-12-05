@@ -16,13 +16,15 @@
   <script src='https://npmcdn.com/@turf/turf/turf.min.js'></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw.css" />
   <script src="https://unpkg.com/leaflet-draw@1.0.2/dist/leaflet.draw.js"></script>
+  <script src="js/leaflet.ajax.min.js"></script>
+  <script type="text/javascript" src="../data/westeros.json"></script>
   <style>
-   #delete, #export {
+   #delete, #export, #textbox {
             position: absolute;
             top:50px;
             right:10px;
             z-index:100;
-            background:white;
+            background: #AAAAAA;
             color:black;
             padding:6px;
             border-radius:4px;
@@ -34,6 +36,10 @@
         #export {
             top:90px;
         }
+    #textbox {
+      top: 180px;
+      height: 40px;
+    }
 </style>
 
 
@@ -46,8 +52,10 @@
 
 
   <div id="map" style="width: 500px; height: 788px;"></div>
+  <div id='delete'>Delete Features</div>
+  <a href='#' id='export'>Export Features</a>
+  <input id="textbox" type="text" name="territoryName" placeholder="Current territory">
 
-  
   <script>
     var map = L.map('map', {
         crs: L.CRS.Simple,
@@ -112,24 +120,33 @@
     });
 
 
+    // on click, clear all layers
+    document.getElementById('delete').onclick = function(e) {
+            drawnItems.clearLayers();
+        }
+    
+    document.getElementById('export').onclick = function(e) {
+        // Extract GeoJson from drawnItems
+        var data = drawnItems.toGeoJSON();
+        filename = document.getElementById("textbox").value
+        filename = filename+'.geojson'
+        
+        // Stringify the GeoJson
+        var convertedData = 'text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data));
 
+        // Create export
+        document.getElementById('export').setAttribute('href', 'data:' + convertedData);
+        document.getElementById('export').setAttribute('download',filename);
+    }
 
+    var geojsonLayer = new L.GeoJSON.AJAX("territories/skagos.geojson");       
+    geojsonLayer.addTo(map);
+    var geojsonLayer = new L.GeoJSON.AJAX("territories/karhold.geojson");       
+    geojsonLayer.addTo(map);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  $.getJSON("../data/westeros.json", function(json) {
+    console.log(json); // this will show the info it in firebug console
+});
     var sol = L.latLng([ 744, 500 ]);
     L.marker(sol).addTo(map);
 
