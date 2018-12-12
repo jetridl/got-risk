@@ -1,0 +1,38 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+  margin-left: 100px;
+}
+#map {
+  height: 788px;
+  width: 500px;
+}
+body {
+  margin:0;
+  padding:0px;
+  font:14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#delete, #export, #textbox {
+  position: absolute;
+  top:50px;
+  right:10px;
+  z-index:100;
+  background: #AAAAAA;
+  color:black;
+  padding:6px;
+  border-radius:4px;
+  font-family: 'Helvetica Neue';
+  cursor: pointer;
+  font-size:12px;
+  text-decoration:none;
+}
+
+#export {
+  top:90px;
+}
+
+#textbox {
+top: 180px;
+height: 40px;
+}
