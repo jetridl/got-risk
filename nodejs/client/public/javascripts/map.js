@@ -80,6 +80,23 @@ var map = L.map('map', {
       .setAttribute('href', 'data:' + convertedData);
     document.getElementById('export').setAttribute('download', filename);
   };
+
+  var highlighted = {
+    "color": "#ff7800",
+    "weight": 5,
+    "opacity": 0.65
+};
+
+  $.getJSON('data/westeros.json', function(westeros) {
+    console.log(westeros);
+    for (var i=0; i<westeros.length; i++) {
+        console.log(westeros[i]);
+        
+        var geojsonLayer = new L.GeoJSON.AJAX('territories/'+ westeros[i].id +'.geojson');
+        geojsonLayer.addTo(map);
+    }
+    // this will show the info it in firebug console
+   });
   
 //   var geojsonLayer = new L.GeoJSON.AJAX('territories/skagos.geojson');
 //   geojsonLayer.addTo(map);
